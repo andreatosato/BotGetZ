@@ -8,12 +8,12 @@ public class WeatherForecast
     public string Date { get; set; }
 
     /// <summary>
-    /// The temperature in Celsius
+    /// Max temperature
     /// </summary>
-    public int TemperatureC { get; set; }
+    public int MaxTemperature { get; set; }
 
     /// <summary>
-    /// The temperature in Fahrenheit
+    /// Gets or sets the minimum allowable temperature value.
     /// </summary>
-    public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
+    public int MinTemperature { get; set; }
 }

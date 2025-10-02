@@ -5,6 +5,7 @@
     <LangVersion>latest</LangVersion>
     <ImplicitUsings>enable</ImplicitUsings>
     <NoWarn>$(NoWarn);SKEXP0110;SKEXP0010</NoWarn>
+    <UserSecretsId>add798b8-1345-45ed-b9bb-592fc7d31d90</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>

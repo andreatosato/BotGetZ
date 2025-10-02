@@ -24,11 +24,13 @@ public class WeatherForecastPlugin(ITurnContext turnContext)
             searchingForDate = searchingDate.ToLongDateString();
         }
         turnContext.StreamingResponse.QueueInformativeUpdateAsync($"Looking up the Weather in {location} for {searchingForDate}");
-        
+
+        var value = Random.Shared.Next(-5, 40);
         return Task.FromResult(new WeatherForecast
         {
             Date = date,
-            TemperatureC = Random.Shared.Next(-5, 40)
+            MaxTemperature = value,
+            MinTemperature = value - Random.Shared.Next(0, 15)
         });
     }
 }

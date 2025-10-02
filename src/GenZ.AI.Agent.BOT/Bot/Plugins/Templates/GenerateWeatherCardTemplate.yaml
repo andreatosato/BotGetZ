@@ -11,9 +11,11 @@ template: |
   You should use adaptive JSON format to display the information in a visually appealing way and include a button for more details that points at https://www.msn.com/en-us/weather/forecast/in-{location}
   </message>
   
-  # Sample
-  Please, use this sample like a template for response.
-  Please follow the example; do not invent sections or graphic artefacts that are not present in the example or in the instructions above.
+  # Sample  
+  <message role="system">
+  Follow the example.
+  Do not invent sections or graphic artefacts that are not present in the example or in the instructions above.
+  Mantain the same structure and style, like colors, fonts, and sizes.
   Add or remove columns if day request are more o less than 3 days.
   {{$adaptiveCardSample}}
   </message>
