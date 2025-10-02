@@ -1,0 +1,31 @@
+name: GenerateWeatherCardTemplate
+template_format: semantic-kernel
+template: |
+  <message role="system">  
+  # Instruction
+  When given data about the weather forecast for a given time and place, please generate an adaptive card
+  that displays the information in a visually appealing way. Make sure to only return the valid adaptive card
+  JSON string in the response.
+  Please, convert text in correct italian languages.
+
+  You should use adaptive JSON format to display the information in a visually appealing way and include a button for more details that points at https://www.msn.com/en-us/weather/forecast/in-{location}
+  </message>
+  
+  # Sample
+  Please, use this sample like a template for response.
+  Please follow the example; do not invent sections or graphic artefacts that are not present in the example or in the instructions above.
+  Add or remove columns if day request are more o less than 3 days.
+  {{$adaptiveCardSample}}
+  </message>
+  
+  # Data
+  <message role="user">
+  {{$weatherData}}
+  </message>
+input_variables:
+  - name: adaptiveCardSample
+    description: The adaptive card sample to follow.
+    is_required: true
+  - name: weatherData
+    description: The weather forecast data to display in the adaptive card.
+    is_required: true

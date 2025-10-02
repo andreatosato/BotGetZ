@@ -1,0 +1,146 @@
+{
+  "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+  "type": "AdaptiveCard",
+  "version": "1.6",
+  "speak": "<s>Weather forecast for ${TodayDay} is high of ${TodayHigh} and low of ${TodayLow} degrees with a ${TodayRainChance}% chance of rain</s><s>Winds will be ${TodayWindSpeed} mph from the ${TodayWindDirection}</s>",
+  "body": [
+    {
+      "type": "ColumnSet",
+      "columns": [
+        {
+          "type": "Column",
+          "width": 35,
+          "items": [
+            {
+              "type": "TextBlock",
+              "text": "{{CityName}}",
+              "weight": "Bolder",
+              "size": "Large",
+              "wrap": true,
+              "color": "Dark",
+              "style": "heading"
+            }
+          ]
+        },
+        {
+          "type": "Column",
+          "width": 65,
+          "items": [
+            {
+              "type": "TextBlock",
+              "text": "{{DATE(${TodayDate}, SHORT)}}",
+              "weight": "Bolder",
+              "size": "Large",
+              "wrap": true,
+              "color": "Dark",
+              "style": "heading"
+            },
+            {
+              "type": "TextBlock",
+              "text": "${TodayLow} / ${TodayHigh}",
+              "size": "Medium",
+              "spacing": "None",
+              "wrap": true,
+              "color": "Dark"
+            }           
+          ]
+        }
+      ]
+    },
+    {
+      "type": "ColumnSet",
+      "columns": [
+        {
+          "type": "Column",
+          "width": 20,
+          "items": [
+            {
+              "type": "TextBlock",
+              "horizontalAlignment": "Center",
+              "text": "${Day1Emoji} - ${Day1Name}",
+              "wrap": true,
+              "color": "Dark"
+            },
+            {
+              "type": "TextBlock",
+              "text": "**High** ${Day1High}",
+              "wrap": true,
+              "color": "Dark",
+              "horizontalAlignment": "Center"
+            },
+            {
+              "type": "TextBlock",
+              "text": "**Low** ${Day1Low}",
+              "wrap": true,
+              "color": "Dark",
+              "spacing": "None",
+              "horizontalAlignment": "Center"
+            }
+          ]
+        },
+        {
+          "type": "Column",
+          "width": 20,
+          "items": [
+            {
+              "type": "TextBlock",
+              "horizontalAlignment": "Center",
+              "text": "${Day2Emoji} - ${Day2Name}",
+              "wrap": true,
+              "color": "Dark"
+            },
+            {
+              "type": "TextBlock",
+              "text": "**High** ${Day2High}",
+              "wrap": true,
+              "color": "Dark",
+              "horizontalAlignment": "Center"
+            },
+            {
+              "type": "TextBlock",
+              "text": "**Low** ${Day2Low}",
+              "wrap": true,
+              "color": "Dark",
+              "spacing": "None",
+              "horizontalAlignment": "Center"
+            }
+          ]
+        },
+        {
+          "type": "Column",
+          "width": 20,
+          "items": [
+            {
+              "type": "TextBlock",
+              "horizontalAlignment": "Center",
+              "text": "${Day3Emoji} - ${Day3Name}",
+              "wrap": true,
+              "color": "Dark"
+            },
+            {
+              "type": "TextBlock",
+              "text": "**High** ${Day3High}",
+              "wrap": true,
+              "color": "Dark",
+              "horizontalAlignment": "Center"
+            },
+            {
+              "type": "TextBlock",
+              "text": "**Low** ${Day3Low}",
+              "wrap": true,
+              "color": "Dark",
+              "spacing": "None",
+              "horizontalAlignment": "Center"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "actions": [
+    {
+      "type": "Action.Submit",
+      "title": "${ActionTitle}"
+    }
+  ]
+}
