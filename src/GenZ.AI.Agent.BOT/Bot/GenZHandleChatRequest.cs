@@ -1,29 +1,24 @@
-﻿using GenZ.AI.Agent.BOT.Bot.Agents;
-using Microsoft.Agents.Builder;
-using Microsoft.Agents.Builder.App;
+﻿using Microsoft.Agents.Builder;
 using Microsoft.Agents.Builder.State;
 using Microsoft.Agents.Core.Models;
 using Microsoft.SemanticKernel;
 using Microsoft.SemanticKernel.ChatCompletion;
 using Microsoft.Extensions.DependencyInjection.Extensions;
-
+using GenZ.AI.Agent.BOT.Bot.Agents;
 
 namespace GenZ.AI.Agent.BOT.Bot;
 
-public class WeatherAgentBot : AgentApplication
+public class GenZHandleChatRequest
 {
     private WeatherForecastAgent _weatherAgent;
     private Kernel _kernel;
 
-    public WeatherAgentBot(AgentApplicationOptions options, Kernel kernel) : base(options)
+    public GenZHandleChatRequest(Kernel kernel)
     {
         _kernel = kernel ?? throw new ArgumentNullException(nameof(kernel));
-
-        OnConversationUpdate(ConversationUpdateEvents.MembersAdded, WelcomeMessageAsync);
-        OnActivity(ActivityTypes.Message, MessageActivityAsync, rank: RouteRank.Last);
     }
 
-    protected async Task MessageActivityAsync(ITurnContext turnContext, ITurnState turnState, CancellationToken cancellationToken)
+    public async Task HandleChatRequest(ITurnContext turnContext, ITurnState turnState, CancellationToken cancellationToken)
     {
         // Setup local service connection
         ServiceCollection serviceCollection = [
@@ -65,16 +60,5 @@ public class WeatherAgentBot : AgentApplication
                 break;
         }
         await turnContext.StreamingResponse.EndStreamAsync(cancellationToken); // End the streaming response
-    }
-
-    protected async Task WelcomeMessageAsync(ITurnContext turnContext, ITurnState turnState, CancellationToken cancellationToken)
-    {
-        foreach (ChannelAccount member in turnContext.Activity.MembersAdded)
-        {
-            if (member.Id != turnContext.Activity.Recipient.Id)
-            {
-                await turnContext.SendActivityAsync(MessageFactory.Text("Hello and Welcome! I'm here to help with all your weather forecast needs!"), cancellationToken);
-            }
-        }
     }
 }

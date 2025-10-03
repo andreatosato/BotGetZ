@@ -11,6 +11,7 @@
   <ItemGroup>
     <PackageReference Include="Azure.Identity" Version="1.16.0" />
     <PackageReference Include="AdaptiveCards" Version="3.1.0" />
+    <PackageReference Include="Bogus" Version="35.6.4" />
     <PackageReference Include="Microsoft.SemanticKernel.Agents.AzureAI" Version="1.65.0-preview" />
     <PackageReference Include="Microsoft.SemanticKernel.Agents.Core" Version="1.65.0" />
     <PackageReference Include="Microsoft.SemanticKernel.Connectors.AzureOpenAI" Version="1.65.0" />
@@ -35,9 +36,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="appsettings.Development.json" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Bot\Cards\" />
   </ItemGroup>
   <ItemGroup>
     <None Update="Bot\Plugins\Templates\GenerateWeatherCardTemplate.yaml">

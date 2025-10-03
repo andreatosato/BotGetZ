@@ -5,6 +5,7 @@ using Microsoft.Agents.Hosting.AspNetCore;
 using Microsoft.Agents.Builder.App;
 using Microsoft.Agents.Builder;
 using Microsoft.Agents.Storage;
+using GenZ.AI.Agent.BOT.Bot;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Configuration.AddUserSecrets<Program>();
@@ -45,7 +46,8 @@ builder.AddAgentApplicationOptions();
 builder.Services.AddTransient<AgentApplicationOptions>();
 
 // Add the bot (which is transient)
-builder.AddAgent<GenZ.AI.Agent.BOT.Bot.WeatherAgentBot>();
+builder.AddAgent<GenZ.AI.Agent.BOT.Bot.GenZBotApplication>();
+builder.Services.AddScoped<GenZHandleChatRequest>();
 
 var app = builder.Build();
 

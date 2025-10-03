@@ -1,0 +1,94 @@
+{
+  "$schema": "https://adaptivecards.io/schemas/adaptive-card.json",
+  "type": "AdaptiveCard",
+  "version": "1.5",
+  "body": [
+    {
+      "type": "TextBlock",
+      "text": "${title}",
+      "size": "ExtraLarge",
+      "weight": "Bolder",
+      "horizontalAlignment": "Center"
+    },
+    {
+      "type": "TextBlock",
+      "text": "${subtitle}",
+      "size": "Medium",
+      "horizontalAlignment": "Center",
+      "spacing": "Small"
+    },
+    {
+      "type": "Container",
+      "items": [
+        {
+          "type": "TextBlock",
+          "text": "Today's Specials",
+          "weight": "Bolder",
+          "spacing": "Medium"
+        },
+        {
+          "type": "Container",
+          "items": [
+            {
+              "type": "ColumnSet",
+              "columns": [
+                {
+                  "type": "Column",
+                  "width": "auto",
+                  "items": [
+                    {
+                      "type": "Image",
+                      "url": "${food.image}",
+                      "style": "Person",
+                      "size": "Medium"
+                    }
+                  ]
+                },
+                {
+                  "type": "Column",
+                  "width": "stretch",
+                  "items": [
+                    {
+                      "type": "TextBlock",
+                      "text": "${food.name}",
+                      "weight": "Bolder",
+                      "wrap": true
+                    },
+                    {
+                      "type": "TextBlock",
+                      "text": "${food.description}",
+                      "wrap": true
+                    },
+                    {
+                      "type": "TextBlock",
+                      "text": "${food.tags}",
+                      "spacing": "None",
+                      "wrap": true
+                    },
+                    {
+                      "type": "RichTextBlock",
+                      "inlines": [
+                        {
+                          "type": "TextRun",
+                          "text": "${food.oldPrice}",
+                          "color": "Attention",
+                          "strikethrough": true
+                        },
+                        {
+                          "type": "TextRun",
+                          "text": " ${food.price}",
+                          "isSubtle": true
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "id": "foodRepeater"
+        }
+      ]
+    }
+  ]
+}
