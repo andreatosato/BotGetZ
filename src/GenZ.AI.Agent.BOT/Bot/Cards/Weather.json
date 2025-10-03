@@ -52,6 +52,7 @@
       "columns": [
         {
           "type": "Column",
+          "width": 20,
           "items": [
             {
               "type": "TextBlock",
@@ -79,6 +80,7 @@
         },
         {
           "type": "Column",
+          "width": 20,
           "items": [
             {
               "type": "TextBlock",
@@ -106,6 +108,7 @@
         },
         {
           "type": "Column",
+          "width": 20,
           "items": [
             {
               "type": "TextBlock",
