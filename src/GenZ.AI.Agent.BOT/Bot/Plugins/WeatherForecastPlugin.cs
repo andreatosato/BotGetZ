@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace GenZ.AI.Agent.BOT.Bot.Plugins;
 
-public class WeatherForecastPlugin(ITurnContext turnContext)
+public class WeatherForecastPlugin//(ITurnContext turnContext)
 {
     /// <summary>
     /// Retrieve the weather forecast for a specific date. This is a placeholder for a real implementation
@@ -23,7 +23,7 @@ public class WeatherForecastPlugin(ITurnContext turnContext)
         {
             searchingForDate = searchingDate.ToLongDateString();
         }
-        turnContext.StreamingResponse.QueueInformativeUpdateAsync($"Looking up the Weather in {location} for {searchingForDate}");
+        //turnContext.StreamingResponse.QueueInformativeUpdateAsync($"Looking up the Weather in {location} for {searchingForDate}");
 
         var value = Random.Shared.Next(-5, 40);
         return Task.FromResult(new WeatherForecast

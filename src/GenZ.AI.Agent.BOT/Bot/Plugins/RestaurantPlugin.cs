@@ -1,14 +1,13 @@
 ﻿using GenZ.AI.Agent.BOT.Bot.Models;
-using Microsoft.Agents.Builder;
 using Microsoft.SemanticKernel;
 using System.ComponentModel;
 
 namespace GenZ.AI.Agent.BOT.Bot.Plugins;
 
-public class RestaurantPlugin(ITurnContext turnContext)
+public class RestaurantPlugin
 {
     [KernelFunction]
-    [Description("Get a sample restaurant menu")]
+    [Description("Get a sample restaurant menu with fake data")]
     public RestaurantModel GetRestaurantMenu()
     {
         return new RestaurantModel

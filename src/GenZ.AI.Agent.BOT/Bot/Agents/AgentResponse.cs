@@ -3,7 +3,7 @@ using System.Text.Json.Serialization;
 
 namespace GenZ.AI.Agent.BOT.Bot.Agents;
 
-public enum WeatherForecastAgentResponseContentType
+public enum AgentResponseContentType
 {
     [JsonPropertyName("text")]
     Text,
@@ -12,11 +12,11 @@ public enum WeatherForecastAgentResponseContentType
     AdaptiveCard
 }
 
-public class WeatherForecastAgentResponse
+public class AgentResponse
 {
     [JsonPropertyName("contentType")]
     [JsonConverter(typeof(JsonStringEnumConverter))]
-    public WeatherForecastAgentResponseContentType ContentType { get; set; }
+    public AgentResponseContentType ContentType { get; set; }
 
     [JsonPropertyName("content")]
     [Description("The content of the response, may be plain text, or JSON based adaptive card but must be a string.")]

@@ -8,7 +8,6 @@ namespace GenZ.AI.Agent.BOT.Bot;
 
 public class GenZBotApplication : AgentApplication
 {
-    private WeatherForecastAgent _weatherAgent;
     private GenZHandleChatRequest _coordinatorAgent;
 
     public GenZBotApplication(AgentApplicationOptions options, GenZHandleChatRequest coordinatorAgent) : base(options)

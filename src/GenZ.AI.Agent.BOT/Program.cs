@@ -1,11 +1,12 @@
 using GenZ.AI.Agent.BOT;
-using GenZ.AI.Agent.BOT.Bot.Agents;
-using Microsoft.SemanticKernel;
-using Microsoft.Agents.Hosting.AspNetCore;
-using Microsoft.Agents.Builder.App;
-using Microsoft.Agents.Builder;
-using Microsoft.Agents.Storage;
 using GenZ.AI.Agent.BOT.Bot;
+using GenZ.AI.Agent.BOT.Bot.Agents;
+using Microsoft.Agents.Builder;
+using Microsoft.Agents.Builder.App;
+using Microsoft.Agents.Hosting.AspNetCore;
+using Microsoft.Agents.Storage;
+using Microsoft.SemanticKernel;
+using Microsoft.SemanticKernel.Agents;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Configuration.AddUserSecrets<Program>();
@@ -28,7 +29,7 @@ builder.Services.AddAzureOpenAIChatCompletion(
 );
 
 // Register the WeatherForecastAgent
-builder.Services.AddTransient<WeatherForecastAgent>();
+builder.Services.AddTransient<OrchestrationAgent>();
 
 // Add AspNet token validation
 builder.Services.AddBotAspNetAuthentication(builder.Configuration);
@@ -48,8 +49,9 @@ builder.Services.AddTransient<AgentApplicationOptions>();
 // Add the bot (which is transient)
 builder.AddAgent<GenZ.AI.Agent.BOT.Bot.GenZBotApplication>();
 builder.Services.AddScoped<GenZHandleChatRequest>();
+builder.Services.AddGenZBoss();
 
-var app = builder.Build();
+ var app = builder.Build();
 
 if (app.Environment.IsDevelopment())
 {

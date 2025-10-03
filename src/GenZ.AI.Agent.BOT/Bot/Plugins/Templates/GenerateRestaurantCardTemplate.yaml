@@ -1,0 +1,30 @@
+name: GenerateWeatherCardTemplate
+template_format: semantic-kernel
+template: |
+  <message role="system">  
+  # Instruction
+  When given data about the restaurant menu for a given plate choice, please generate an adaptive card
+  that displays the information in a visually appealing way. Make sure to only return the valid adaptive card
+  JSON string in the response.
+  Please, convert text in correct italian languages.
+  </message>
+  
+  # Sample  
+  <message role="system">
+  Follow the example.
+  Do not invent sections or graphic artefacts that are not present in the example or in the instructions above.
+  Mantain the same structure and style, like colors, fonts, and sizes.
+  {{$adaptiveCardSample}}
+  </message>
+  
+  # Data
+  <message role="user">
+  {{$restaurantData}}
+  </message>
+input_variables:
+  - name: adaptiveCardSample
+    description: The adaptive card sample to follow.
+    is_required: true
+  - name: restaurantData
+    description: The restaurant menu data to display in the adaptive card.
+    is_required: true

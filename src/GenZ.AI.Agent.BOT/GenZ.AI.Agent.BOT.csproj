@@ -38,6 +38,9 @@
     <None Include="appsettings.Development.json" />
   </ItemGroup>
   <ItemGroup>
+    <None Update="Bot\Plugins\Templates\GenerateRestaurantCardTemplate.yaml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="Bot\Plugins\Templates\GenerateWeatherCardTemplate.yaml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

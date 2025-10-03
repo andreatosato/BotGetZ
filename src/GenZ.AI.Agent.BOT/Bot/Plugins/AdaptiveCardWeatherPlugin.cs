@@ -1,4 +1,5 @@
-﻿using Microsoft.SemanticKernel;
+﻿using GenZ.AI.Agent.BOT.Bot.Models;
+using Microsoft.SemanticKernel;
 using Microsoft.SemanticKernel.ChatCompletion;
 using System.ComponentModel;
 using System.Reflection;
@@ -7,9 +8,9 @@ using System.Threading.Tasks;
 
 namespace GenZ.AI.Agent.BOT.Bot.Plugins;
 
-public class AdaptiveCardPlugin
+public class AdaptiveCardWeatherPlugin
 {
-    [KernelFunction("create_adaptive_card")]
+    [KernelFunction("create_weather_adaptive_card")]
     [Description("Create an adaptive card from weather data")]
 
     public async Task<string> GetAdaptiveCardForData(Kernel kernel, string data)

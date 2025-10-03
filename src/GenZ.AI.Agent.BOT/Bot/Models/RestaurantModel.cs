@@ -34,7 +34,7 @@ public static class MenuItemGenerator
                 var discount = f.Random.Decimal(1, 3);
                 return "$" + (old - discount).ToString("0.00");
             })
-            .RuleFor(m => m.Image, f => f.Image.PicsumUrl(width: 80, height: 80));
+            .RuleFor(m => m.Image, f => f.Image.PicsumUrl(width: 100, height: 150));
 
         return faker.Generate(Random.Shared.Next(1,6));
     }
