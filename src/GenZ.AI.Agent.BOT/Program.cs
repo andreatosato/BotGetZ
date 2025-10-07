@@ -1,12 +1,18 @@
+using Azure.AI.OpenAI;
+using Azure.Identity;
 using GenZ.AI.Agent.BOT;
 using GenZ.AI.Agent.BOT.Bot;
 using GenZ.AI.Agent.BOT.Bot.Agents;
+using GenZ.AI.Agent.BOT.Bot.Plugins;
+using Microsoft.Agents.AI;
 using Microsoft.Agents.Builder;
 using Microsoft.Agents.Builder.App;
 using Microsoft.Agents.Hosting.AspNetCore;
 using Microsoft.Agents.Storage;
-using Microsoft.SemanticKernel;
-using Microsoft.SemanticKernel.Agents;
+using Microsoft.Extensions.AI;
+using Microsoft.Extensions.DependencyInjection;
+using OpenAI;
+using System.ClientModel;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Configuration.AddUserSecrets<Program>();
@@ -15,18 +21,21 @@ builder.Services.AddHttpClient("WebClient", client => client.Timeout = TimeSpan.
 builder.Services.AddHttpContextAccessor();
 builder.Logging.AddConsole();
 
-
-// Register Semantic Kernel
-builder.Services.AddKernel();
-
 // Register the AI service of your choice. AzureOpenAI and OpenAI are demonstrated...
 var config = builder.Configuration.Get<ConfigOptions>();
 
-builder.Services.AddAzureOpenAIChatCompletion(
-    deploymentName: config.Azure.OpenAIDeploymentName,
-    endpoint: config.Azure.OpenAIEndpoint,
-    apiKey: config.Azure.OpenAIApiKey
-);
+builder.Services
+    .AddScoped<WeatherForecastPlugin>()
+    .AddScoped<DateTimePlugin>()
+    .AddScoped<AdaptiveCardWeatherPlugin>()
+    .AddScoped<RestaurantPlugin>()
+    .AddScoped<AdaptiveCardRestaurantPlugin>();
+
+builder.Services.AddTransient((sp) => 
+        new AzureOpenAIClient(new(config.Azure.OpenAIEndpoint), new ApiKeyCredential(config.Azure.OpenAIApiKey))
+            .GetChatClient(config.Azure.OpenAIDeploymentName)
+            .AddGenZBoss(sp)
+        );
 
 // Register the WeatherForecastAgent
 builder.Services.AddTransient<OrchestrationAgent>();

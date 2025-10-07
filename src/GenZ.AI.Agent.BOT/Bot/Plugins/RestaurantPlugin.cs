@@ -1,12 +1,11 @@
 ﻿using GenZ.AI.Agent.BOT.Bot.Models;
-using Microsoft.SemanticKernel;
+using Microsoft.Extensions.AI;
 using System.ComponentModel;
 
 namespace GenZ.AI.Agent.BOT.Bot.Plugins;
 
 public class RestaurantPlugin
 {
-    [KernelFunction]
     [Description("Get a sample restaurant menu with fake data")]
     public RestaurantModel GetRestaurantMenu()
     {
@@ -16,6 +15,11 @@ public class RestaurantPlugin
             Subtitle = "Exquisite Dining Experience",
             Food = MenuItemGenerator.GenerateFakeMenu()
         };
+    }
+
+    public IEnumerable<AITool> AsAITools()
+    {
+        yield return AIFunctionFactory.Create(this.GetRestaurantMenu);
     }
 }
 
